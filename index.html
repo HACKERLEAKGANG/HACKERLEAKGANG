@@ -3,235 +3,594 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HACKER LEAK GANG // ARCHIVE</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HLG // PRIVATE ARCHIVE NODE</title>
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg:#050706;
+    --panel:#090e0b;
+    --panel2:#0d1410;
+    --line:#1b3022;
+    --green:#9bffae;
+    --dim:#52805e;
+    --muted:#526057;
+    --red:#b85b5b;
 }
 
+* {box-sizing:border-box;margin:0;padding:0}
+
 body {
-    background: #08090b;
-    color: #e5e5e5;
-    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(ellipse at 50% 0%,#102018 0%,transparent 55%),
+        var(--bg);
+    color:#b5c9ba;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    min-height:100vh;
+}
+
+body:before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.12;
+    z-index:10;
+    background:repeating-linear-gradient(
+        transparent 0px,
+        transparent 2px,
+        #000 3px
+    );
+}
+
+a {color:inherit;text-decoration:none}
+button {font:inherit}
+
+.topline {
+    height:25px;
+    padding:5px 4%;
+    background:#0c160f;
+    border-bottom:1px solid var(--line);
+    color:var(--dim);
+    font-size:9px;
+    display:flex;
+    justify-content:space-between;
 }
 
 header {
-    height: 70px;
-    border-bottom: 1px solid #202124;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
+    padding:22px 4%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    background:#070b08;
 }
 
-.logo {
-    font-size: 17px;
-    font-weight: 900;
-    letter-spacing: -1px;
+.brand {
+    font-family:'Share Tech Mono',monospace;
+    font-size:clamp(19px,3vw,30px);
+    color:var(--green);
+    letter-spacing:2px;
+    text-shadow:0 0 14px #69ff8c55;
 }
 
-.logo span {
-    color: #b7ff3c;
+.brand small {
+    display:block;
+    font-size:9px;
+    color:var(--dim);
+    letter-spacing:4px;
+    margin-top:5px;
 }
 
-.status {
-    color: #b7ff3c;
-    font-size: 10px;
-    letter-spacing: 1px;
+.server-status {
+    color:var(--green);
+    font-size:10px;
+    text-align:right;
 }
 
-main {
-    max-width: 900px;
-    margin: 100px auto;
-    padding: 0 25px;
+nav {
+    padding:12px 4%;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    background:#0b100c;
+    border-bottom:1px solid var(--line);
 }
 
-.tag {
-    color: #b7ff3c;
-    font-size: 10px;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
+nav a {
+    font-size:10px;
+    color:#79917e;
+    letter-spacing:1px;
+}
+
+nav a:hover {color:var(--green)}
+
+.container {
+    width:min(1250px,94%);
+    margin:30px auto;
+}
+
+.breadcrumb {
+    color:var(--muted);
+    font-size:10px;
+    margin-bottom:25px;
+}
+
+.breadcrumb span {color:var(--green)}
+
+.hero {
+    border:1px solid var(--line);
+    background:linear-gradient(120deg,#0b1710,#080b09);
+    padding:35px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero:after {
+    content:"HLG";
+    position:absolute;
+    right:20px;
+    top:-30px;
+    font-family:'Share Tech Mono';
+    font-size:170px;
+    color:#a4ffb0;
+    opacity:.025;
+    pointer-events:none;
+}
+
+.kicker {
+    color:var(--green);
+    font-size:10px;
+    letter-spacing:3px;
 }
 
 h1 {
-    font-size: clamp(45px, 9vw, 85px);
-    line-height: .95;
-    letter-spacing: -5px;
-    font-weight: 900;
+    font-family:'Share Tech Mono';
+    font-size:clamp(38px,8vw,76px);
+    line-height:1;
+    letter-spacing:2px;
+    color:#e0f6e4;
+    margin:22px 0 15px;
+    text-shadow:0 0 25px #65ff8730;
 }
 
-h1 span {
-    color: #b7ff3c;
+h1 span {color:var(--green)}
+
+.hero p {
+    color:#718878;
+    font-size:11px;
+    line-height:2;
 }
 
-.subtitle {
-    color: #777;
-    font-size: 13px;
-    margin-top: 20px;
-    line-height: 1.7;
+.hero-bottom {
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-top:30px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    color:var(--dim);
+    font-size:10px;
 }
 
-.section-title {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #888;
-    margin-bottom: 15px;
+.dot {
+    display:inline-block;
+    height:6px;width:6px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 9px var(--green);
+    margin-right:7px;
 }
 
-.archive {
-    margin-top: 65px;
+.grid {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 280px;
+    gap:15px;
+    margin-top:18px;
 }
 
-.track {
-    background: #101114;
-    border: 1px solid #25272b;
-    padding: 23px;
-    transition: border .2s;
+.panel {
+    border:1px solid var(--line);
+    background:var(--panel);
+    margin-bottom:15px;
 }
 
-.track:hover {
-    border-color: #b7ff3c;
+.panel-head {
+    padding:12px 15px;
+    background:#0e1711;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:var(--green);
+    font-size:10px;
+    letter-spacing:1px;
 }
 
-.track-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.panel-body {padding:17px}
+
+.file {
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:17px 12px;
+    background:#0c120e;
+    border:1px solid #1a2a1e;
+    transition:.2s;
 }
 
-.track-number {
-    color: #b7ff3c;
-    font-size: 10px;
+.file:hover {
+    border-color:var(--green);
+    background:#101b13;
 }
 
-.track h2 {
-    font-size: 20px;
-    margin-top: 17px;
+.file-icon {
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    border:1px solid #294a31;
+    color:var(--green);
+    font-family:'Share Tech Mono';
+    font-size:12px;
 }
 
-.metadata {
-    color: #666;
-    font-size: 10px;
-    margin-top: 9px;
-    letter-spacing: 1px;
+.file-info {flex:1;min-width:0}
+
+.file-name {
+    color:#d2e7d6;
+    font-size:14px;
+    margin-bottom:7px;
+    overflow-wrap:anywhere;
 }
 
-audio {
-    width: 100%;
-    height: 38px;
-    margin-top: 25px;
-    accent-color: #b7ff3c;
+.file-meta {
+    color:var(--muted);
+    font-size:9px;
+    line-height:1.8;
 }
+
+.file-tag {
+    border:1px solid #315e3c;
+    color:var(--green);
+    padding:5px 7px;
+    font-size:9px;
+}
+
+.player {margin-top:15px}
+
+.player audio {
+    width:100%;
+    height:38px;
+    accent-color:var(--green);
+}
+
+.player-label {
+    color:var(--dim);
+    font-size:9px;
+    margin-bottom:9px;
+}
+
+.stats {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.stat {
+    background:#0b130d;
+    border:1px solid var(--line);
+    padding:14px;
+}
+
+.stat label {
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+    margin-bottom:9px;
+}
+
+.stat strong {
+    color:var(--green);
+    font-family:'Share Tech Mono';
+    font-size:23px;
+}
+
+.terminal {
+    background:#030604;
+    border:1px solid #1a3020;
+    padding:15px;
+    color:#80bd8d;
+    font-size:10px;
+    line-height:2;
+    overflow:hidden;
+}
+
+.terminal .muted {color:#435b49}
+.terminal .success {color:var(--green)}
+.terminal .warning {color:#c8aa61}
+
+.blink {
+    animation:blink 1s steps(2,start) infinite;
+}
+
+@keyframes blink {to{visibility:hidden}}
+
+.log {
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #18251b;
+    color:#819487;
+    font-size:10px;
+}
+
+.log:last-child {border:0}
+.log span:first-child {color:var(--green)}
 
 .disclaimer {
-    margin-top: 75px;
-    border-top: 1px solid #242528;
-    padding-top: 25px;
+    margin-top:15px;
+    padding:18px;
+    border:1px solid #303020;
+    background:#11110c;
 }
 
 .disclaimer h3 {
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #b7ff3c;
-    margin-bottom: 13px;
+    color:#c9b76b;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-bottom:12px;
 }
 
 .disclaimer p {
-    color: #666;
-    font-size: 11px;
-    line-height: 1.8;
+    color:#89856b;
+    font-size:10px;
+    line-height:2;
 }
 
 footer {
-    border-top: 1px solid #202124;
-    padding: 25px;
-    text-align: center;
-    color: #444;
-    font-size: 10px;
-    letter-spacing: 2px;
+    border-top:1px solid var(--line);
+    margin-top:45px;
+    padding:25px 4%;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    color:#455649;
+    font-size:9px;
+    letter-spacing:1px;
 }
 
-@media(max-width: 600px) {
-    main {
-        margin-top: 75px;
-    }
-
-    h1 {
-        letter-spacing: -3px;
-    }
-
-    header {
-        padding: 0 20px;
-    }
+@media(max-width:750px) {
+    .grid {grid-template-columns:1fr}
+    .hero {padding:24px}
+    .server-status {font-size:8px}
+    .file-tag {display:none}
 }
 </style>
 </head>
 
 <body>
 
+<div class="topline">
+    <span>HLG NETWORK // NODE 001</span>
+    <span>CONNECTION: ENCRYPTED SIMULATION</span>
+    <span id="clock">00:00:00</span>
+</div>
+
 <header>
-    <div class="logo">HACKER <span>LEAK</span> GANG</div>
-    <div class="status">● ARCHIVE ONLINE</div>
+    <div class="brand">
+        HACKER LEAK GANG
+        <small>PRIVATE AUDIO DATABASE / HLG-001</small>
+    </div>
+    <div class="server-status">
+        <div><span class="dot"></span>SYSTEM OPERATIONAL</div>
+        <div style="color:#526057;margin-top:7px">ACCESS LEVEL: PUBLIC</div>
+    </div>
 </header>
 
-<main>
+<nav>
+    <a href="#">[ HOME ]</a>
+    <a href="#archive">FILE ARCHIVE</a>
+    <a href="#logs">SYSTEM LOGS</a>
+    <a href="#disclaimer">DISCLAIMER</a>
+    <a href="mailto:">CONTACT</a>
+</nav>
 
-    <div class="tag">HLG / UNDERGROUND AUDIO DATABASE</div>
+<div class="container">
 
-    <h1>UNRELEASED.<br><span>UNFILTERED.</span></h1>
+    <div class="breadcrumb">
+        ROOT / DATABASE / <span>HOME</span>
+    </div>
 
-    <p class="subtitle">
-        Underground audio archive.<br>
-        Unreleased files, alternate versions, and miscellaneous recordings.
-    </p>
+    <section class="hero">
+        <div class="kicker">/// HLG UNDERGROUND NETWORK</div>
 
-    <section class="archive">
+        <h1>UNRELEASED.<br><span>UNFILTERED.</span></h1>
 
-        <div class="section-title">LATEST UPLOADS / 001 FILES</div>
+        <p>
+            Welcome to the HLG private audio database.<br>
+            A collection of recordings, alternate versions and underground audio files.<br>
+            Browse the archive. Check the files. Listen at your own risk.
+        </p>
 
-        <div class="track">
+        <div class="hero-bottom">
+            <span><span class="dot"></span>DATABASE ONLINE</span>
+            <span>NODE: HLG-001</span>
+            <span>ESTABLISHED: 2026</span>
+            <span>ACCESS: OPEN</span>
+        </div>
+    </section>
 
-            <div class="track-top">
-                <span class="track-number">HLG-001</span>
-                <span class="track-number">ARCHIVED</span>
-            </div>
+    <div class="grid">
 
-            <h2>HLG_001.wav</h2>
+        <div>
 
-            <div class="metadata">
-                ARTIST: DROSIVE / FORMAT: WAV
-            </div>
+            <section class="panel" id="archive">
+                <div class="panel-head">
+                    <span>FILE DIRECTORY</span>
+                    <span>01 RESULTS</span>
+                </div>
 
-            <audio controls preload="metadata">
-                <source src="HLG_001.wav" type="audio/wav">
-                Your browser does not support audio playback.
-            </audio>
+                <div class="panel-body">
+
+                    <div class="file">
+                        <div class="file-icon">WAV</div>
+
+                        <div class="file-info">
+                            <div class="file-name">HLG_001.wav</div>
+                            <div class="file-meta">
+                                ARTIST: DROSIVE<br>
+                                FILE ID: HLG-001 // FORMAT: WAV<br>
+                                STATUS: ARCHIVED
+                            </div>
+                        </div>
+
+                        <div class="file-tag">AVAILABLE</div>
+                    </div>
+
+                    <div class="player">
+                        <div class="player-label">
+                            AUDIO PLAYER // HLG_001.wav
+                        </div>
+
+                        <audio controls preload="metadata">
+                            <source src="HLG_001.wav" type="audio/wav">
+                            Your browser does not support audio.
+                        </audio>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="panel" id="logs">
+                <div class="panel-head">
+                    <span>RECENT DATABASE ACTIVITY</span>
+                    <span>LIVE LOG</span>
+                </div>
+
+                <div class="panel-body">
+                    <div class="log">
+                        <span>[UPLOAD]</span>
+                        <span>HLG_001.wav added to archive</span>
+                        <span>001</span>
+                    </div>
+
+                    <div class="log">
+                        <span>[SYSTEM]</span>
+                        <span>Database initialized</span>
+                        <span>OK</span>
+                    </div>
+
+                    <div class="log">
+                        <span>[ACCESS]</span>
+                        <span>Public archive enabled</span>
+                        <span>OK</span>
+                    </div>
+                </div>
+            </section>
 
         </div>
 
-    </section>
+        <aside>
 
-    <section class="disclaimer">
-        <h3>AUTHENTICITY DISCLAIMER</h3>
+            <section class="panel">
+                <div class="panel-head">
+                    <span>DATABASE STATISTICS</span>
+                </div>
 
+                <div class="panel-body">
+                    <div class="stats">
+                        <div class="stat">
+                            <label>TOTAL FILES</label>
+                            <strong>001</strong>
+                        </div>
+                        <div class="stat">
+                            <label>ARTISTS</label>
+                            <strong>001</strong>
+                        </div>
+                        <div class="stat">
+                            <label>SERVER NODE</label>
+                            <strong>01</strong>
+                        </div>
+                        <div class="stat">
+                            <label>STATUS</label>
+                            <strong style="font-size:16px">ONLINE</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <span>SERVER CONSOLE</span>
+                </div>
+
+                <div class="panel-body">
+                    <div class="terminal">
+                        <div class="muted">HLG SYSTEM TERMINAL</div>
+                        <div>--------------------</div>
+                        <div class="success">[OK] Node initialized</div>
+                        <div class="success">[OK] Archive mounted</div>
+                        <div class="success">[OK] Audio index loaded</div>
+                        <div class="success">[OK] Public access enabled</div>
+                        <div class="warning">[!] Authenticity unverified</div>
+                        <div class="muted">--------------------</div>
+                        <div>HLG@NODE:~$ <span class="blink">_</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <span>ARCHIVE INFORMATION</span>
+                </div>
+                <div class="panel-body">
+                    <div class="file-meta" style="line-height:2.2">
+                        DATABASE VERSION: 1.0.0<br>
+                        ARCHIVE TYPE: AUDIO<br>
+                        NETWORK: HLG<br>
+                        REGION: UNKNOWN<br>
+                        LAST UPDATE: 2026<br>
+                        OPERATOR: UNKNOWN
+                    </div>
+                </div>
+            </section>
+
+        </aside>
+
+    </div>
+
+    <section class="disclaimer" id="disclaimer">
+        <h3>/// AUTHENTICITY DISCLAIMER</h3>
         <p>
-            NOTICE: We cannot independently verify the origins of these
-            files. However, our sources indicate a 99% probability of
-            authenticity. HLG assumes no responsibility for inaccurate
-            metadata or mislabeled files.
+            NOTICE: We cannot independently verify the origins of these files.
+            However, our sources indicate a 99% probability of authenticity.
+            HLG assumes no responsibility for inaccurate metadata or mislabeled files.
         </p>
-
     </section>
 
-</main>
+</div>
 
 <footer>
-    HACKER LEAK GANG © 2026
+    <span>HACKER LEAK GANG © 2026</span>
+    <span>HLG PRIVATE AUDIO DATABASE</span>
+    <span>NODE_001 // END OF TRANSMISSION</span>
 </footer>
+
+<script>
+function updateClock() {
+    document.getElementById("clock").textContent =
+        new Date().toLocaleTimeString("en-US", {
+            hour12:false
+        });
+}
+
+updateClock();
+setInterval(updateClock,1000);
+</script>
 
 </body>
 </html>
